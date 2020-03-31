@@ -1,8 +1,12 @@
-export default function manageTodo(state = {
-  todos: [],
-}, action) {
+const initState = { todos: [] };
 
-  console.log("reducer received this action:", action);
+export default function manageTodo(state = initState, action) {
+  switch (action.type) {
+    case "ADD-TODO":
+      console.log({ todos: [...state.todos, action.payload.text] });
+      return { todos: [...state.todos, action.payload.text] };
 
-  return state;
+    default:
+      return state;
+  }
 }
